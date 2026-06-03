@@ -22,7 +22,8 @@ class Game {
       if (e.key === 'Shift') {
         return
       }
-      if (current.textContent == e.key) {
+
+      if (current.textContent.toLowerCase() === e.key.toLowerCase()) {
         this.success()
       }
       else {
@@ -31,6 +32,7 @@ class Game {
     }
     document.addEventListener('keydown', onkey)
   }
+
 
   success() {
     if(this.currentSymbol.classList.contains("symbol_current")) this.currentSymbol.classList.remove("symbol_current");
