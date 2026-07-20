@@ -17,20 +17,20 @@ class Game {
   }
 
   registerEvents() {
-    let onkey = (e) => {
-      const current = this.currentSymbol
-      if (e.key === 'Shift') {
-        return
+    document.addEventListener('keydown', (event) => {
+      const expectedSymbol = this.currentSymbol.textContent;
+      const enteredSymbol = event.key;
+
+      if (enteredSymbol === ' '){
+        event.preventDefault();
       }
 
-      if (current.textContent.toLowerCase() === e.key.toLowerCase()) {
-        this.success()
+      if(expectedSymbol.toLowerCase() === enteredSymbol.toLowerCase()){
+        this.success();
+      } else {
+        this.fail();
       }
-      else {
-        this.fail()
-      }
-    }
-    document.addEventListener('keydown', onkey)
+    });
   }
 
 
