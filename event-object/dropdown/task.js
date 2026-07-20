@@ -1,19 +1,19 @@
 const dropdowns = document.querySelectorAll('.dropdown');
 
-dropdowns.forEach((dropdown) => {
-    const value = dropdown.querySelector('.dropdown__value');
-    const list = dropdown.querySelector('.dropdown__list');
-    const items = dropdown.querySelectorAll('.dropdown__item');
+dropdowns.forEach(dropdown => {
+    const valueEl = dropdown.querySelector('.dropdown__value');
+    const listEl = dropdown.querySelector('.dropdown__list');
+    const links = dropdown.querySelectorAll('.dropdown__link');
 
-    value.addEventListener('click', () => {
-        list.classList.toggle('dropdown__list_active');
+    valueEl.addEventListener('click', () => {
+        listEl.classList.toggle('dropdown__list_active');
     });
 
-    items.forEach((item) => {
-        item.onclick = () => {
-            value.textContent = item.textContent;
-            list.classList.remove('dropdown__list_active');
-            return false; 
-        };
+    links.forEach(link => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          valueEl.textContent = link.textContent.trim();
+          listEl.classList.remove('dropdown__list_active');
+        });
     });
 });
