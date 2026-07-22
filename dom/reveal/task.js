@@ -1,13 +1,11 @@
-window.addEventListener('scroll', function(){
-    const block = document.querySelectorAll('.reveal')
-    for (let i of block) {
-        const {top, bottom} = i.getBoundingClientRect()
-            if (bottom < window.innerHeight) {
-                i.classList.add('reveal_active')
-            }
-            else {
-                i.classList.remove('reveal_active')
-            }
+function checkReveal (){
+    const blocks = document.querySelectorAll('.reveal');
+    for(let block of blocks){
+        const {top, bottom} = block.getBoundingClientRect();
+        if(top < window.innerHeight && bottom > 0){
+            block.classList.add('reveal_active');
         }
+    }
 }
-)
+window.addEventListener('scroll', checkReveal);
+checkReveal();
