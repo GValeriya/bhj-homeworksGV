@@ -1,21 +1,24 @@
-let fonts = document.querySelectorAll('.font-size');
-let fontActive = document.querySelector('.font-size_active');
+const fonts = document.querySelectorAll('.font-size');
 const bookFs = document.getElementById('book');
 
-for (let i of fonts) {
-    i.addEventListener('click', toggleActive)
-}
+for (let fontButton of fonts) {
+    fontButton.addEventListener('click', toggleActive);
+};
 function toggleActive(e) {
-    fontActive.classList.remove('font-size_active')
-    this.classList.add('font-size_active');
-    fontActive = this;
-    if (this.getAttribute('data-size') === 'small') {
-        bookFs.classList.add('book_fs-small')
-        e.preventDefault()
+    e.preventDefault();
+
+    const fontActive = document.querySelector('.font-size_active');
+    if(fontActive) {
+        fontActive.classList.remove('font-size_active');
     }
-    if (this.getAttribute('data-size') === 'big') {
-        bookFs.classList.add('book_fs-big')
-        bookFs.classList.remove('book_fs-small')
-        e.preventDefault()
+    this.classList.add('font-size_active');
+
+    bookFs.classList.remove('book_fs-small', 'book_fs-big');
+
+    const size = this.getAttribute('data-size');
+    if (size === 'small') {
+        bookFs.classList.add('book_fs-small');
+    } else if (size === 'big') {
+        bookFs.classList.add('book_fs-big');
     }
 }
